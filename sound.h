@@ -1,3 +1,4 @@
+//#define DEBUG		// conditiol compiling
 // constant definitions
 #define SAMPLERATE 16000
 

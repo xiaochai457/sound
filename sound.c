@@ -1,6 +1,7 @@
 #include"sound.h"
 #include<stdio.h>
 #include<math.h>
+#include"screen.h"
 //function definition of printID()
 void printID(char id[]){
 	int i;
@@ -25,12 +26,17 @@ void dispWAVData(char filename[]){
 	fread(&mh, sizeof(mh), 1, fp);
 	fread(samples, sizeof(short), SAMPLERATE, fp);
 	fclose(fp);
+	clearScreen();
 	for(i=0; i<80; i++){
 		for(j=0, sum=0.0; j<SAMPLERATE/80; ++j){
 			sum += samples[j+i*200] * samples[j+i*200];
 		}
 		rms[i] = sqrt(sum/200);
-		printf("rms[%d]: %10.4f\n", i, rms[i]);
+#ifdef DEBUG
+		printf("rms[%d]: %10.4f, db = %10.4f\n", i, rms[i], 20*log10(rms[i]));
+#else
+		dispBar(i,20*log10(rms[i]));
+#endif
 	}
 }
 // function definition of dispWAVHeader()
@@ -46,6 +52,7 @@ void dispWAVHeader(char filename[]){
 	}
 	fread(&mh, sizeof(mh), 1, fp);
 	fclose(fp);	//close the openedile
+	clearScreen();
 	printf("chunk ID: ");
 	printID(mh.chunkID);
 	printf("  chunk size: %d\n", mh.chunkSize);
