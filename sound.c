@@ -3,7 +3,11 @@
 #include<stdio.h>
 #include<math.h>
 #include"screen.h"
-//function definition of printID()
+/*function definition of printID()
+	this functiong prints id.
+	input argument: char id[]
+	output argument. none
+*/
 void printID(char id[]){
 	int i;
 	for(i=0; i<4; i++)

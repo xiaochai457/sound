@@ -23,10 +23,11 @@ void gotoxy(int row, int col){
 	fflush(stdout);
 }
 
-/*function defintiong of setColor()
+/*function defintion of setColor()
 	this function uses vt100 escape sequence \ESC[1;colorm to set the color
 	for part of colum
-	arugment: 
+	arugment: colum color
+	return: no
 */
 void setColor(int color){
 	if(color>=BLACK && color<=WHITE){
@@ -35,7 +36,15 @@ void setColor(int color){
 	}
 }
 
-//
+/*funciton defintion of dispBar()
+	this function use function gotoxy() to calculate the location for each bar,
+	use unicode to show the bars, when the value is less than 50/3 the color of
+	the bar will be white , when value is bigger than 50/3 and less than 70/3
+	the bar will be yellow, and when value is bigger than 70/3 the color will be
+	red.
+	input argument:int col , double db
+	return argument:none
+*/
 void dispBar(int col, double dB){
 	int i;
 	for(i=0; i<dB/3; i++){

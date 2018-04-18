@@ -5,6 +5,9 @@
 #include<math.h>
 #include<signal.h>
 
+/*
+
+*/
 int main(void){
 	int ret;
 	while(1){	//loop forever
